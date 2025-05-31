@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Интерактивный Исследователь Карт</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.7.0"
+        }
+      }
+    </script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=7f3a901e-7473-437b-bd24-ac7353ef591d&lang=ru_RU" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="map-container" class="map-container">
+      <div id="map"></div>
+
+      <div class="search-container">
+        <div class="mode-toggle">
+          <label class="switch">
+            <input type="checkbox" id="planner-mode-toggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="mode-label">Режим Планировщика Дня</span>
+        </div>
+
+        <div class="search-bar">
+          <i class="fas fa-search search-icon"></i>
+          <textarea
+            id="prompt-input"
+            placeholder="Исследуйте места, историю, события или маршруты..."
+          ></textarea>
+          <button id="generate" class="search-button">
+            <i class="fas fa-arrow-right"></i>
+            <div class="spinner"></div>
+          </button>
+        </div>
+
+        <div class="error" id="error-message"></div>
+      </div>
+
+      <div class="card-carousel">
+        <div class="card-container" id="card-container">
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-arrow prev" id="prev-card">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="carousel-indicators" id="carousel-indicators">
+          </div>
+          <button class="carousel-arrow next" id="next-card">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <button id="reset" class="reset-button">
+        <i class="fas fa-undo"></i>
+      </button>
+    </div>
+
+    <div class="map-overlay" id="map-overlay"></div>
+
+    <div class="timeline-container" id="timeline-container">
+      <button id="timeline-toggle" class="timeline-toggle">
+        <i class="fas fa-calendar-alt"></i>
+      </button>
+
+      <div class="timeline-header">
+        <h3>Ваш План Дня</h3>
+        <div class="timeline-actions">
+          <button id="share-plan" class="export-button" title="Поделиться планом">
+            <i class="fas fa-share-alt"></i> Поделиться
+          </button>
+          <button id="export-plan" class="export-button" title="Экспортировать план">
+            <i class="fas fa-download"></i> Экспорт
+          </button>
+          <button id="close-timeline" class="close-button" title="Закрыть">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="timeline" id="timeline">
+      </div>
+    </div>
+
+    <div id="spinner" class="hidden spinner"></div>
+    <script type="module" src="/index.js"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
